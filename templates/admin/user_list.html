@@ -1,0 +1,70 @@
+<!-- templates/admin/user_list.html -->
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="container mt-5 card mb-2">
+    <h3 class="text text-center card-header">All Users</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Joined</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.date_joined }}</td>
+                <td>
+                    <a href="{% url 'admin-user-detail' user.id %}" class="btn btn-info btn-sm">View</a>
+                    <!-- You can add more actions like edit, delete if needed -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center ">
+        {% if users.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ users.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        {% endif %}
+
+        {% for i in users.paginator.page_range %}
+        {% if i == users.number %}
+        <li class="page-item active"><a class="page-link">{{ i }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if users.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ users.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}

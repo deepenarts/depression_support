@@ -1,0 +1,60 @@
+{% extends "home/base.html" %}
+
+{% block title %}Register{% endblock title %} 
+
+{% block body %}
+
+<div class="containerR col-4 mt-4 mx-auto card shadow-lg mb-4 p-4">
+    <form class="form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <h1 class="ghost text-center">Register </h1>
+        <hr>
+        {% include "alert.html" %}
+
+        <div class="mb-3">  
+          <label for="exampleInputEmail1" class="form-label">Firstname</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">  
+          <label for="exampleInputEmail1" class="form-label">Lastname</label>
+          <input type="text" class="form-control" id="last_name" name="last_name" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">  
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">  
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">  
+          <label for="exampleInputEmail1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">  
+          <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="password" name="confirm-password" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <div class="text ">
+            <p>Already have an account? <a href="{% url 'login-user' %}">Login</p>
+        </div>
+      </form>
+
+      
+      <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+          const password = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirm-password').value;
+          const errorMessage = document.getElementById('error-message');
+          
+          if (password !== confirmPassword) {
+            event.preventDefault();  // Prevent form submission
+            errorMessage.textContent = 'Passwords do not match';
+          } else {
+            errorMessage.textContent = '';  // Clear error message
+          }
+        });
+      </script>
+
+{% endblock body %}

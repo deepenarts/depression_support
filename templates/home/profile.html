@@ -1,0 +1,28 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+
+{% block body %}
+
+<h2 class="text-center">My Profile</h2>
+<hr>
+<div class="bg-secondary text-light col-md-3 center mb-4 card mx-auto center p-4">
+    <div class="center mx-auto">
+        {% if patient.profile_image %}
+            <img src="{{ patient.profile_image.url }}" alt="Profile Image" class="rounded-circle center" style="width: 150px; height: 150px;">
+        {% else %}
+            <img src="{% static 'medias/account.png' %}" alt="Default Profile Image" class="rounded-circle" style="width: 150px; height: 150px;">
+        {% endif %}
+    </div>
+    <div class="center mx-auto">
+        <h4>{{ patient.full_name }}</h4>
+            
+        <p><strong>Email:</strong> {{ patient.email }}</p>
+        <p><strong>Address:</strong> {{ patient.address }}</p>
+        <p><strong>Joined On:</strong> {{ patient.joined_on }}</p>
+    </div>
+    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+</div>
+
+
+{% endblock body %}

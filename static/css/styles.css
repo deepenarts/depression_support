@@ -1,0 +1,90 @@
+/* Custom CSS for active link underline */
+.nav-link.active {
+    border-bottom: 2px solid #007bff;
+  }
+.bg-light {
+      background-color: #003265 !important;
+}
+body{
+    background-color: #d7ebe8;
+}
+.navbar-nav .dropdown-menu {
+    background-color: #f5d3fb;
+}
+.form-control {
+    background-color: #f5d3fb;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    background-color: #a8b1ef;
+}
+.footer{
+    background-color: #223d6dcf;
+    color: aliceblue;
+}
+
+.foothead {
+    background-color: #004e65cc;
+    color: aliceblue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.backTop {
+    text-decoration: none;
+    color: white;
+}
+.copyright {
+    background-color: #004e6552;
+}
+.pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+}
+.rounded-circle {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+/* static/css/admin_dashboard.css */
+.admin-dashboard {
+    padding: 20px;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.stat {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+}

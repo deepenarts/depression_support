@@ -1,0 +1,73 @@
+<!-- templates/admin/dashboard.html -->
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+{% include "alert.html" %}
+
+<div class="container mt-5 admin-dashboard">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h3 class="card-title">Total Users</h3>
+                    <p class="card-text display-4">{{ total_patients }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h3 class="card-title">View All Users</h3>
+                    <a class="btn btn-primary" href="{% url 'admin-users' %}" >Click here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h3 class="card-title">Manage Blogs</h3>
+                    <a class="btn btn-primary" href="{% url 'manage-blogs' %}">Click here</a>
+                </div>
+            </div>
+        </div>
+            
+        
+    </div>
+    <!-- Latest Appointments Card -->
+    <div class="col-md-8 mb-4">
+        <div class="card border-info">
+            <div class="card-body">
+                <h3 class="card-title">Latest Appointments</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Doctor</th>
+                            <th>Appointment Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointments %}
+                        <tr>
+                            <td>{{ appointment.patient_name }}</td>
+                            <td>{{ appointment.doctor.user.username }}</td>
+                            <td>{{ appointment.appointment_date }}</td>
+                            <td>Pending</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4">No appointments available.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

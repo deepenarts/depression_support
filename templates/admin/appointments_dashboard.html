@@ -1,0 +1,25 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <h1>Recent Appointments</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Doctor</th>
+                <th>Appointment Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.patient_name }}</td>
+                    <td>{{ appointment.doctor.name }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.get_status_display }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

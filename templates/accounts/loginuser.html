@@ -1,0 +1,30 @@
+{% extends "home/base.html" %}
+{% block title %}Login{% endblock title %} 
+
+{% block body %}
+
+<div class="containerL col-3 mt-4 mx-auto card shadow-lg mb-4 p-4 ">
+    <form class="form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <h1 class="card-header ghost text-center">Login</h1>
+        <hr>
+
+        {% include "alert.html" %}
+
+        <div class="mb-3 ">  
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">  
+          <label for="exampleInputEmail1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <div class="text ">
+            <p>Don't have an account? <a href="{% url 'register-user' %}">Register </a> </p>
+        </div>
+        
+      </form>
+</div>
+
+{% endblock body %}

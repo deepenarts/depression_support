@@ -1,0 +1,118 @@
+
+{% extends "home/base.html" %}
+{% load static %}  <!-- Add this line at the top -->
+
+{% block title %}Home{% endblock title %} 
+
+{% block body %}
+
+<div class="container mt-4">
+
+    <!-- About Us Section -->
+    <div class="row align-items-center mt-5">
+        <!-- Left Side: Image -->
+        <div class="col-md-6">
+            <img src="{% static 'medias/index.png' %}" class="img-fluid rounded" alt="Depression Support">
+        </div>
+
+        <!-- Right Side: Text -->
+        <div class="col-md-6">
+            <h1 class="text-primary">Mental Support for Everyone!!</h1>
+            <p>
+                Our platform is dedicated to providing emotional and psychological support 
+                for individuals facing mental health challenges. We offer helpful resources, 
+                community support, and expert guidance to ensure no one feels alone in their journey.
+            </p>
+            <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Appointment Booking-->
+    <h1 class="mt-5">Appointment Booking</h1>
+    <hr>
+    <div class="container">
+        <h3 class="text text-center">Available Doctors</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Specialization</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor.user.username }}</td>
+                    <td>{{ doctor.specialization }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">No doctors available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="card center col-md-6 mx-auto">
+            <h2 class= "text text-center">Book an Appointment</h2>
+            {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Submit Appointment Request</button>
+            </form>
+            {% else %}
+            <p class="text text-danger">Please login to book an appointment..!!</p>
+            {% endif %}
+        </div>
+        
+    </div>
+
+    <!-- Blog Section -->
+    <h2 class="mt-5">Latest Blogs</h2>
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-md-4">
+            <div class="card">
+                {% if blog.image %}
+                <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <p class="card-text">{{ blog.content|truncatewords:20 }}</p>
+                    <a href="{% url 'blog-detail' blog.id %}" class="btn btn-info">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No blogs available yet.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Support Resources -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h4>Support Resources</h4>
+            <ul>
+                <li><a href="#">Daily Mental Health Tips</a></li>
+                <li><a href="#">Guided Meditation</a></li>
+                <li><a href="#">Mood Tracker</a></li>
+                <li><a href="#">Emergency Helpline</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Community Support</h4>
+            <p>Connect with others and share your experiences.</p>
+            <a href="#" class="btn btn-primary">Join Discussions</a>
+        </div>
+    </div>
+
+</div>
+
+
+{% include "home/footer.html" %}
+
+{% endblock body %}
+

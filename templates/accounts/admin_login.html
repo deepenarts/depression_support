@@ -1,0 +1,38 @@
+{% extends "home/base.html" %}
+{% block title %}Admin Login{% endblock title %} 
+
+{% block body %}
+
+    <div class="container col-3 mt-4 mx-auto card shadow-lg mb-4 p-0 ">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text text-center">Admin Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                        {% if messages %}
+                            <div class="mt-3">
+                                {% for message in messages %}
+                                    <div class="alert alert-danger">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
