@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'depression.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'depressionSupport',  
+#         'NAME': 'depressionSupportDB',  
 #         'USER': 'postgres',  
 #         'PASSWORD': 'admin123',  
 #         'HOST': 'depressionsupport.cfamoi26ogvs.us-east-1.rds.amazonaws.com',
